@@ -1,0 +1,156 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# 创建的文件:09.10.2020 09:52:44
+
+newmtl Mat3d66_700064_5_601
+	Ns 53.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5882 0.5882 0.5882
+	Kd 0.5882 0.5882 0.5882
+	Ks 0.2340 0.2340 0.2340
+	Ke 0.0000 0.0000 0.0000
+	map_Ka E:\jsg\PJFDS\02Source\FDS\webgl-coordinator\model\3d66Model-700064-files-4.png
+	map_Kd E:\jsg\PJFDS\02Source\FDS\webgl-coordinator\model\3d66Model-700064-files-4.png
+
+newmtl tong
+	Ns 58.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 0.5647 0.0000
+	Kd 1.0000 0.5647 0.0000
+	Ks 0.6930 0.6930 0.6930
+	Ke 0.0000 0.0000 0.0000
+
+newmtl Material__39
+	Ns 53.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.2250 0.2250 0.2250
+	Ke 0.0000 0.0000 0.0000
+
+newmtl Mat3d66_700064_2_9308
+	Ns 53.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.2340 0.2340 0.2340
+	Ke 0.0000 0.0000 0.0000
+
+newmtl cangti
+	Ns 53.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5882 0.5882 0.5882
+	Kd 0.5882 0.5882 0.5882
+	Ks 0.2340 0.2340 0.2340
+	Ke 0.0000 0.0000 0.0000
+	map_Ka E:\jsg\PJFDS\02Source\FDS\webgl-coordinator\model\3d66Model-700064-files-6.png
+	map_Kd E:\jsg\PJFDS\02Source\FDS\webgl-coordinator\model\3d66Model-700064-files-6.png
+
+newmtl Material__80
+	Ns 53.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.2340 0.2340 0.2340
+	Ke 0.0000 0.0000 0.0000
+
+newmtl heigui
+	Ns 15.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.1137 0.1137 0.1137
+	Kd 0.1137 0.1137 0.1137
+	Ks 0.2520 0.2520 0.2520
+	Ke 0.0000 0.0000 0.0000
+
+newmtl baise
+	Ns 38.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.2250 0.2250 0.2250
+	Ke 0.0000 0.0000 0.0000
+
+newmtl baiqi
+	Ns 53.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.2340 0.2340 0.2340
+	Ke 0.0000 0.0000 0.0000
+
+newmtl tuan
+	Ns 54.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.2160 0.2160 0.2160
+	Ke 0.0000 0.0000 0.0000
+	map_Ka E:\jsg\PJFDS\02Source\FDS\webgl-coordinator\model\3d66Model-700064-files-7.png
+	map_Kd E:\jsg\PJFDS\02Source\FDS\webgl-coordinator\model\3d66Model-700064-files-7.png
+
+newmtl geshan
+	Ns 53.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5882 0.5882 0.5882
+	Kd 0.5882 0.5882 0.5882
+	Ks 0.2340 0.2340 0.2340
+	Ke 0.0000 0.0000 0.0000
+	map_Ka E:\jsg\PJFDS\02Source\FDS\webgl-coordinator\model\3d66Model-700064-files-3.png
+	map_Kd E:\jsg\PJFDS\02Source\FDS\webgl-coordinator\model\3d66Model-700064-files-3.png
+	map_d E:\jsg\PJFDS\02Source\FDS\webgl-coordinator\model\3d66Model-700064-files-3.png
+	map_bump -bm 0.3000 E:\jsg\PJFDS\02Source\FDS\webgl-coordinator\model\3d66Model-700064-files-3.png
+
+newmtl Material__90
+	Ns 53.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.2340 0.2340 0.2340
+	Ke 0.0000 0.0000 0.0000

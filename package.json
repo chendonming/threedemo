@@ -1,7 +1,9 @@
 {
   "name": "threecomponent",
   "version": "0.1.0",
+  "description": "造火箭呜呼",
   "private": true,
+  "author": "chendm<2283973011@qq.com>",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -9,8 +11,17 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "element-ui": "^2.15.6",
+    "jsplumb": "^2.15.6",
+    "konva": "^8.3.2",
+    "stats.js": "^0.17.0",
+    "three": "^0.136.0",
+    "three-csg-ts": "^3.1.9",
+    "three-obj-mtl-loader": "^1.0.3",
+    "three-orbit-controls": "^82.1.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
+    "vuedraggable": "^2.24.3",
     "vuex": "^3.4.0"
   },
   "devDependencies": {
