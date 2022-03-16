@@ -5,16 +5,18 @@
 </template>
 
 <script>
-import * as THREE from 'three';
-import oc from 'three-orbit-controls';
-import { mapGetters } from 'vuex';
-import Stats from 'stats.js';
-import ConeModel from '@/testGeo/ConeModel.js';
+import * as THREE from "three";
+import oc from "three-orbit-controls";
+import { mapGetters } from "vuex";
+import Stats from "stats.js";
+import ConeModel from "@/testGeo/ConeModel.js";
+import ExtrudeModel from '@/testGeo/ExtrudeModel.js';
+import LatheModel from '@/testGeo/LatheModel.js';
 
 const OrbitControls = oc(THREE);
 
 export default {
-  name: 'WebGl',
+  name: "WebGl",
   data() {
     return {
       scene: null,
@@ -22,19 +24,14 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['group']),
+    ...mapGetters(["group"]),
   },
   mounted() {
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color('#fff');
+    scene.background = new THREE.Color("#fff");
     const width = this.$refs.webgl.clientWidth;
     const height = this.$refs.webgl.clientHeight;
-    const camera = new THREE.PerspectiveCamera(
-      75,
-      width / height,
-      0.01,
-      1000,
-    );
+    const camera = new THREE.PerspectiveCamera(75, width / height, 0.01, 1000);
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
     });
@@ -56,23 +53,23 @@ export default {
     scene.add(axesHelper);
 
     const group = new THREE.Group();
-    group.name = 'test';
+    group.name = "test";
     console.log(group);
-    this.$store.commit('setGroup', group);
+    this.$store.commit("setGroup", group);
     scene.add(group);
     // group.rotateX(Math.PI / 2);
     // group.rotateZ(Math.PI / 2);
 
     // 添加FPS监控
     const stats = new Stats();
-    stats.domElement.style.position = 'absolute';
-    stats.domElement.style.left = '0px';
-    stats.domElement.style.top = '0px';
+    stats.domElement.style.position = "absolute";
+    stats.domElement.style.left = "0px";
+    stats.domElement.style.top = "0px";
     stats.showPanel(0);
     this.$refs.webgl.appendChild(stats.dom);
 
-    const box = ConeModel();
-    const material = new THREE.MeshPhongMaterial({ color: 0x2099d7 });
+    const box = LatheModel();
+    const material = new THREE.MeshPhongMaterial({ color: 0x2099d7, side: THREE.DoubleSide });
     const mesh = new THREE.Mesh(box, material);
     // 平移网格模型，不影响mesh自身的旋转轴
     mesh.position.set(0, 0, 0);
@@ -97,12 +94,12 @@ export default {
 
     this.raycaster = new THREE.Raycaster();
     this.mouse = new THREE.Vector2();
-    document.getElementById('webgl')
-      .addEventListener('mousedown', (e) => {
-        if (e.button === 0) this.time = new Date();
-      });
-    document.getElementById('webgl')
-      .addEventListener('mouseup', (event) => {
+    document.getElementById("webgl").addEventListener("mousedown", (e) => {
+      if (e.button === 0) this.time = new Date();
+    });
+    document.getElementById("webgl").addEventListener(
+      "mouseup",
+      (event) => {
         if (event.button === 0) {
           const time = new Date();
           // 点击事件小于200ms才响应
@@ -111,7 +108,9 @@ export default {
             this.time = null;
           }
         }
-      }, false);
+      },
+      false
+    );
   },
   methods: {
     /**
@@ -119,13 +118,15 @@ export default {
      */
     onDocumentMouseDown(event) {
       event.preventDefault();
-      this.mouse.x = (event.offsetX / this.renderer.domElement.clientWidth) * 2 - 1;
-      this.mouse.y = -(event.offsetY / this.renderer.domElement.clientHeight) * 2 + 1;
+      this.mouse.x =
+        (event.offsetX / this.renderer.domElement.clientWidth) * 2 - 1;
+      this.mouse.y =
+        -(event.offsetY / this.renderer.domElement.clientHeight) * 2 + 1;
 
       this.raycaster.setFromCamera(this.mouse, this.camera);
       const intersects = this.raycaster.intersectObjects(this.group.children);
       if (intersects.length > 0) {
-        this.$emit('click', intersects[0].object.name);
+        this.$emit("click", intersects[0].object.name);
       }
     },
   },
