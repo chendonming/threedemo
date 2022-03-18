@@ -12,6 +12,7 @@ import Stats from "stats.js";
 import ConeModel from "@/testGeo/ConeModel.js";
 import ExtrudeModel from '@/testGeo/ExtrudeModel.js';
 import LatheModel from '@/testGeo/LatheModel.js';
+import tubeModel, { TubeGeometry } from '@/testGeo/tubeModel.js';
 
 const OrbitControls = oc(THREE);
 
@@ -68,13 +69,6 @@ export default {
     stats.showPanel(0);
     this.$refs.webgl.appendChild(stats.dom);
 
-    const box = LatheModel();
-    const material = new THREE.MeshPhongMaterial({ color: 0x2099d7, side: THREE.DoubleSide });
-    const mesh = new THREE.Mesh(box, material);
-    // 平移网格模型，不影响mesh自身的旋转轴
-    mesh.position.set(0, 0, 0);
-    scene.add(mesh);
-
     function animate() {
       requestAnimationFrame(animate);
       stats.begin();
@@ -89,6 +83,7 @@ export default {
     animate();
 
     this.scene = scene;
+    this.testRender()
     this.renderer = renderer;
     this.camera = camera;
 
@@ -113,6 +108,23 @@ export default {
     );
   },
   methods: {
+    testRender() {
+      const curve = new THREE.CatmullRomCurve3(
+        [
+          new THREE.Vector3( -10, 0, 10 ),
+          new THREE.Vector3( -5, 5, 5 ),
+          new THREE.Vector3( 0, 0, 0 ),
+          new THREE.Vector3( 5, -5, 5 ),
+          new THREE.Vector3( 10, 0, 10 )
+        ]
+      );
+      const box = new tubeModel(curve);
+      const material = new THREE.MeshPhongMaterial({ color: 0x2099d7, side: THREE.DoubleSide });
+      const mesh = new THREE.Mesh(box, material);
+      // 平移网格模型，不影响mesh自身的旋转轴
+      mesh.position.set(0, 0, 0);
+      this.scene.add(mesh);
+    },
     /**
      * 投注一条射线 被射线命中的mesh会被返回，以此来实现点击事件
      */
@@ -137,5 +149,6 @@ export default {
 .WebGl {
   border-top: 1px solid #eee;
   position: relative;
+  height: 100%;
 }
 </style>

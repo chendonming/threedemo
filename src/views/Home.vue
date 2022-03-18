@@ -1,53 +1,8 @@
 <template>
   <div class="home">
-    <div class="wrapper">
-      <div class="shape">
-        <el-button @click="createCube">箭体</el-button>
-        <el-button @click="createCone">头锥</el-button>
-      </div>
-      <div class="color-wrapper">
-        <span>设置默认选中颜色</span>
-        <el-color-picker v-model="focusColor"/>
-      </div>
-    </div>
-    <div class="content-wrapper">
-      <div class="component-list">
-        <ul id="items">
-          <draggable v-model="data"  @change="change">
-            <li v-for="(item, index) in dataComponent"
-                :class="{'active': active === index}" :key="item.id"
-                @click="focusComponent(item.id, index)">
-              {{ item.name }} - {{ item.index || 1 }}
-             <div @click.stop="delModel(index)" class="del-button">删除</div>
-            </li>
-          </draggable>
-        </ul>
-      </div>
-      <web-gl @click="handleModelClick">
-        <component v-for="item in dataComponent"
-                   :ref="item.id" :uuid="item.id" :width="item.w"
-                   :height="item.h" :shapeColor="item.shapeColor"
-                   :offset.sync="item.offset" :key="item.id"
-                   :isFocus="item.isFocus" :is="item.component"></component>
-      </web-gl>
-    </div>
-    <el-dialog title="组件设置" :visible.sync="show" width="30%">
-      <el-form :model="form" ref="form">
-        <el-form-item label="宽度" required>
-          <el-input-number v-model="form.height" controls-position="right"></el-input-number>
-        </el-form-item>
-        <el-form-item label="高度" required>
-          <el-input-number v-model="form.width" controls-position="right"></el-input-number>
-        </el-form-item>
-        <el-form-item label="颜色" required>
-          <el-color-picker v-model="form.shapeColor"></el-color-picker>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="changeModel">确定</el-button>
-          <el-button @click="show = false">取消</el-button>
-        </el-form-item>
-      </el-form>
-    </el-dialog>
+    <web-gl @click="handleModelClick">
+
+    </web-gl>
   </div>
 </template>
 
