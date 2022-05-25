@@ -33,6 +33,8 @@ export default {
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
     });
+
+    renderer.localClippingEnabled = true
     renderer.setSize(width, height);
     this.$refs.webgl.appendChild(renderer.domElement);
 
@@ -43,7 +45,7 @@ export default {
 
     // 添加相机控制
     const controls = new OrbitControls(camera, renderer.domElement);
-    camera.position.set(1, 1, 100);
+    camera.position.set(1, 2, 3);
     controls.update();
 
     // 添加辅助线测试
@@ -52,7 +54,6 @@ export default {
 
     const group = new THREE.Group();
     group.name = "test";
-    console.log(group);
     this.$store.commit("setGroup", group);
     scene.add(group);
     // group.rotateX(Math.PI / 2);
@@ -80,8 +81,8 @@ export default {
     animate();
 
     this.scene = scene;
-    this.testRender()
     this.renderer = renderer;
+    this.testRender()
     this.camera = camera;
 
     this.raycaster = new THREE.Raycaster();
@@ -106,7 +107,7 @@ export default {
   },
   methods: {
     testRender() {
-      testSelection(this.scene)
+      testSelection(this.scene, this.renderer)
     },
     /**
      * 投注一条射线 被射线命中的mesh会被返回，以此来实现点击事件
