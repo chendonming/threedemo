@@ -9,7 +9,7 @@ import * as THREE from "three";
 import oc from "three-orbit-controls";
 import { mapGetters } from "vuex";
 import Stats from "stats.js";
-import {testSelection} from '@/testGeo/testSelection.js'
+import {testPlane} from '@/testGeo/testPlane.js'
 
 const OrbitControls = oc(THREE);
 
@@ -30,6 +30,7 @@ export default {
     const width = this.$refs.webgl.clientWidth;
     const height = this.$refs.webgl.clientHeight;
     const camera = new THREE.PerspectiveCamera(75, width / height, 0.01, 1000);
+    window.camera = camera
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
     });
@@ -107,7 +108,7 @@ export default {
   },
   methods: {
     testRender() {
-      testSelection(this.scene, this.renderer)
+      testPlane(this.scene)
     },
     /**
      * 投注一条射线 被射线命中的mesh会被返回，以此来实现点击事件
