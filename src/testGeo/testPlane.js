@@ -3,7 +3,7 @@ import * as THREE from "three";
  * 测试 Plane
  */
 function testPlane(scene) {
-  const plane = new THREE.Plane(new THREE.Vector3(1, 1, 0), -1);
+  const plane = new THREE.Plane(new THREE.Vector3(1, 0, 0), -1);
   const helper = new THREE.PlaneHelper(plane, 2, 0xff0000);
   scene.add(helper);
 
@@ -14,16 +14,16 @@ function testPlane(scene) {
   scene.add(gridHelper);
 
   // 测试coplanarPoint
-  {
-    const v = new THREE.Vector3();
-    plane.coplanarPoint(v);
-    console.log("coplanarPoint:=====>", v);
-    const geometry = new THREE.BoxGeometry(0.08, 0.08, 0.08);
-    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-    const cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
-    cube.position.set(v.x, v.y, v.z)
-  }
+  // {
+  //   const v = new THREE.Vector3();
+  //   plane.coplanarPoint(v);
+  //   console.log("coplanarPoint:=====>", v);
+  //   const geometry = new THREE.BoxGeometry(0.08, 0.08, 0.08);
+  //   const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+  //   const cube = new THREE.Mesh(geometry, material);
+  //   scene.add(cube);
+  //   cube.position.set(v.x, v.y, v.z)
+  // }
   // 测试 distanceToPoint
   {
     const geometry = new THREE.BoxGeometry(0.08, 0.08, 0.08);
@@ -31,7 +31,7 @@ function testPlane(scene) {
     const cube = new THREE.Mesh(geometry, material);
     scene.add(cube);
 
-    const v = new THREE.Vector3(1, 0, 0);
+    const v = new THREE.Vector3(-1, 0, 0);
     cube.position.set(v.x, v.y, v.z);
     console.log("distanceToPoint: ====>", plane.distanceToPoint(v));
 
