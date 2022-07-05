@@ -9,7 +9,7 @@ import * as THREE from "three";
 import oc from "three-orbit-controls";
 import { mapGetters } from "vuex";
 import Stats from "stats.js";
-import {testRenderOrder} from '@/testGeo/testRenderOrder.js'
+import {testIntersects} from '@/testGeo/testIntersects.js'
 
 const OrbitControls = oc(THREE);
 
@@ -83,8 +83,8 @@ export default {
 
     this.scene = scene;
     this.renderer = renderer;
-    this.testRender()
     this.camera = camera;
+    this.testRender()
 
     this.raycaster = new THREE.Raycaster();
     this.mouse = new THREE.Vector2();
@@ -108,7 +108,7 @@ export default {
   },
   methods: {
     testRender() {
-      testRenderOrder(this.scene)
+      testIntersects(this.scene, this.camera)
     },
     /**
      * 投注一条射线 被射线命中的mesh会被返回，以此来实现点击事件
