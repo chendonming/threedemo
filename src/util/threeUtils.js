@@ -1,7 +1,7 @@
 /**
  * 根据testGo文件夹中的实验, 进行抽离各种实用API
  */
-import * as THREE from "three";
+import * as THREE from 'three';
 
 /**
  *

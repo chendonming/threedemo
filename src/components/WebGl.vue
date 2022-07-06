@@ -9,7 +9,7 @@ import * as THREE from "three";
 import oc from "three-orbit-controls";
 import { mapGetters } from "vuex";
 import Stats from "stats.js";
-import {testIntersects} from '@/testGeo/testIntersects.js'
+import {testVector} from '@/testGeo/testVector.js'
 
 const OrbitControls = oc(THREE);
 
@@ -108,7 +108,7 @@ export default {
   },
   methods: {
     testRender() {
-      testIntersects(this.scene, this.camera)
+      testVector(this.scene)
     },
     /**
      * 投注一条射线 被射线命中的mesh会被返回，以此来实现点击事件

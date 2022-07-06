@@ -1,5 +1,6 @@
-import * as THREE from "three";
-import { vectorIncreaseDistance } from "@/util/threeUtils.js";
+import * as THREE from 'three';
+import { vectorIncreaseDistance } from '@/util/threeUtils.js';
+
 /**
  *
  * @param {THREE.Scene} scene
@@ -40,7 +41,7 @@ function testIntersects(scene, camera) {
       // 通过摄像机和鼠标位置更新射线
       raycaster.setFromCamera(pointer, camera);
       // 计算物体和射线的焦点
-      console.log('positions: ', geometry.attributes.position.array)
+      console.log('positions: ', geometry.attributes.position.array);
       const result = testMesh(
         geometry.index.array,
         geometry.attributes.position.array,
@@ -53,19 +54,27 @@ function testIntersects(scene, camera) {
           originz: raycaster.ray.origin.z,
           far: Infinity,
         },
-        scene
+        scene,
       );
 
-      console.log("相交结果: ", result);
+      console.log('相交结果: ', result);
     }
 
-    window.addEventListener("click", onPointerMove);
+    window.addEventListener('click', onPointerMove);
   }
 }
 
 function testMesh(indices, positions, opt, scene) {
-  const { directionx, directionz, directiony, originx, originy, originz, far } = opt;
-  console.log("count: ", indices.length);
+  const {
+    directionx,
+    directionz,
+    directiony,
+    originx,
+    originy,
+    originz,
+    far,
+  } = opt;
+  console.log('count: ', indices.length);
   for (let faceId = 0; faceId < indices.length; faceId += 3) {
     const ia = indices[faceId] * 3;
     const ib = indices[faceId + 1] * 3;
@@ -77,23 +86,41 @@ function testMesh(indices, positions, opt, scene) {
 
     const center = new THREE.Triangle(v0, v1, v2).getMidpoint(new THREE.Vector3());
 
-    const e0 = v0.clone().sub(center).normalize();
-    const e1 = v1.clone().sub(center).normalize();
-    const e2 = v2.clone().sub(center).normalize();
+    const e0 = v0.clone()
+      .sub(center)
+      .normalize();
+    const e1 = v1.clone()
+      .sub(center)
+      .normalize();
+    const e2 = v2.clone()
+      .sub(center)
+      .normalize();
 
-    var vFOV = THREE.MathUtils.degToRad(camera.fov); // convert vertical fov to radians
-    var dist = v0.distanceTo(camera.position);
+    const vFOV = THREE.MathUtils.degToRad(camera.fov); // convert vertical fov to radians
+    const dist = v0.distanceTo(camera.position);
 
-    var height = Math.tan(vFOV / 2) * dist; // visible height
-    var width = 2 * (height * camera.aspect) / 12;
+    const height = Math.tan(vFOV / 2) * dist; // visible height
+    const width = 2 * (height * camera.aspect) / 12;
 
     const newV0 = vectorIncreaseDistance(v0, e0, width);
     const newV1 = vectorIncreaseDistance(v1, e1, width);
     const newV2 = vectorIncreaseDistance(v2, e2, width);
 
-    const { x: v0x, y: v0y, z: v0z } = newV0;
-    const { x: v1x, y: v1y, z: v1z } = newV1;
-    const { x: v2x, y: v2y, z: v2z } = newV2;
+    const {
+      x: v0x,
+      y: v0y,
+      z: v0z
+    } = newV0;
+    const {
+      x: v1x,
+      y: v1y,
+      z: v1z
+    } = newV1;
+    const {
+      x: v2x,
+      y: v2y,
+      z: v2z
+    } = newV2;
 
     {
       // 辅助理解
@@ -102,11 +129,14 @@ function testMesh(indices, positions, opt, scene) {
         if (allowFaceId) {
           // 画原本的三角形 红色
           const geometry = new THREE.BufferGeometry();
-          console.log('v0:', JSON.stringify(v0))
+          console.log('v0:', JSON.stringify(v0));
           const vertices = new Float32Array([v0.x, v0.y, v0.z, v1.x, v1.y, v1.z, v2.x, v2.y, v2.z]);
-          console.log(vertices)
-          geometry.setAttribute("position", new THREE.BufferAttribute(vertices, 3));
-          const material = new THREE.MeshBasicMaterial({ color: 0xff0000, side: THREE.DoubleSide });
+          console.log(vertices);
+          geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+          const material = new THREE.MeshBasicMaterial({
+            color: 0xff0000,
+            side: THREE.DoubleSide
+          });
           material.depthTest = false;
           const mesh = new THREE.Mesh(geometry, material);
           mesh.renderOrder = 1;
@@ -119,8 +149,11 @@ function testMesh(indices, positions, opt, scene) {
           // 画扩张后的三角形, 黄色
           const geometry = new THREE.BufferGeometry();
           const vertices = new Float32Array([v0x, v0y, v0z, v1x, v1y, v1z, v2x, v2y, v2z]);
-          geometry.setAttribute("position", new THREE.BufferAttribute(vertices, 3));
-          const material = new THREE.MeshBasicMaterial({ color: 0xf7dc6f, side: THREE.DoubleSide });
+          geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+          const material = new THREE.MeshBasicMaterial({
+            color: 0xf7dc6f,
+            side: THREE.DoubleSide
+          });
           material.depthTest = false;
           const mesh = new THREE.Mesh(geometry, material);
           mesh.renderOrder = 0;
@@ -132,11 +165,14 @@ function testMesh(indices, positions, opt, scene) {
         if (allowFaceId) {
           // 画中心点
           const geometry = new THREE.BoxGeometry(0.1, 0.1, 0.1);
-          const material = new THREE.MeshBasicMaterial({ color: 0x5dade2, side: THREE.DoubleSide });
+          const material = new THREE.MeshBasicMaterial({
+            color: 0x5dade2,
+            side: THREE.DoubleSide
+          });
           const cube = new THREE.Mesh(geometry, material);
           material.depthTest = false;
           cube.renderOrder = 2;
-          console.log('center: ', center)
+          console.log('center: ', center);
           cube.position.copy(center);
           scene.add(cube);
         }
@@ -156,7 +192,7 @@ function testMesh(indices, positions, opt, scene) {
     const pvecz = directionx * edge2y - directiony * edge2x;
 
     const det = edge1x * pvecx + edge1y * pvecy + edge1z * pvecz;
-    if (det == 0) continue;
+    if (det === 0) continue;
     const invdet = 1 / det;
 
     const tvecx = originx - v0x;
