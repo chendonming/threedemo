@@ -1,24 +1,14 @@
-# threecomponent
+# ThreeJs测试
 
-## Project setup
-```
-yarn install
-```
+## 前提
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+- 初始化完成threejs
+- 存在OrbitControls相机控制
+- xyz的辅助线
+- FPS监控
 
-### Compiles and minifies for production
-```
-yarn build
-```
+## 开启测试
 
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- 在 **src/testGeo/**文件下创建文件
+- 如果是vscode 输入**cjs**用来创建代码片段
+- 在**src/component/WebGl**中,找到**testRender**方法, 改为自己在testGeo文件夹下的文件名即可

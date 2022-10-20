@@ -9,12 +9,17 @@ import * as THREE from "three";
 import oc from "three-orbit-controls";
 import { mapGetters } from "vuex";
 import Stats from "stats.js";
-import { testAnimationRoobot } from "@/testGeo/testAnimationRoobot.js";
+import { testLine } from "@/testGeo/testLine.js";
 
 const OrbitControls = oc(THREE);
 
 export default {
   name: "WebGl",
+  methods: {
+    testRender() {
+      testLine(this.scene, this.camera, this.renderer);
+    },
+  },
   data() {
     return {
       scene: null,
@@ -54,8 +59,8 @@ export default {
     const size = 20;
     const divisions = 20;
 
-    const gridHelper = new THREE.GridHelper(size, divisions);
-    scene.add(gridHelper);
+    // const gridHelper = new THREE.GridHelper(size, divisions);
+    // scene.add(gridHelper);
 
     // 添加辅助线测试
     const axesHelper = new THREE.AxesHelper(250);
@@ -90,11 +95,6 @@ export default {
 
     this.raycaster = new THREE.Raycaster();
     this.mouse = new THREE.Vector2();
-  },
-  methods: {
-    testRender() {
-      testAnimationRoobot(this.scene, this.camera, this.renderer);
-    },
   },
 };
 </script>
