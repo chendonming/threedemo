@@ -1,6 +1,5 @@
 <template>
   <div class="WebGl" ref="webgl" id="webgl">
-    <slot v-if="scene"></slot>
   </div>
 </template>
 
@@ -9,7 +8,7 @@ import * as THREE from "three";
 import oc from "three-orbit-controls";
 import { mapGetters } from "vuex";
 import Stats from "stats.js";
-import { testLine } from "@/testGeo/testLine.js";
+import { textureRepeat } from "@/testGeo/textureRepeat.js";
 
 const OrbitControls = oc(THREE);
 
@@ -17,14 +16,8 @@ export default {
   name: "WebGl",
   methods: {
     testRender() {
-      testLine(this.scene, this.camera, this.renderer);
+      textureRepeat(this.scene, this.camera, this.renderer);
     },
-  },
-  data() {
-    return {
-      scene: null,
-      time: null,
-    };
   },
   computed: {
     ...mapGetters(["group"]),
