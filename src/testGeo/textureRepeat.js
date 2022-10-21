@@ -30,7 +30,7 @@ function textureRepeat(scene, camera, renderer) {
   geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
   geometry.computeVertexNormals()
 
-  const material = new THREE.MeshBasicMaterial({ color: 0xffff00, side: THREE.DoubleSide, map: texture });
+  // const material = new THREE.MeshBasicMaterial({ color: 0xffff00, side: THREE.DoubleSide, map: texture });
 
   const shadermaterial = new THREE.ShaderMaterial({
     vertexShader: `
@@ -48,7 +48,7 @@ function textureRepeat(scene, camera, renderer) {
       uniform vec2 size;
       void main() {
         // gl_FragColor = texture2D(u_texture, vUv);
-        // 取模运算 在这里相当于取小数部分
+        // 取模运算
         // gl_FragColor = vec4(texture2D(u_texture, mod(vUv * tiles, vec2(1)) * fontsize.xy + repeat.xy));
         gl_FragColor = vec4(texture2D(u_texture, mod(vUv * tiles, vec2(1)) * size + repeat));
       }
