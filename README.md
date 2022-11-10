@@ -12,3 +12,8 @@
 - 在 **src/testGeo/**文件下创建文件
 - 如果是vscode 输入**cjs**用来创建代码片段
 - 在**src/component/WebGl**中,找到**testRender**方法, 改为自己在testGeo文件夹下的文件名即可
+
+
+## 列表
+
+- [textureRepeat.js](/src/testGeo/textureRepeat.js) shader实现 类似雪碧图重复

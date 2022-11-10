@@ -1,5 +1,5 @@
-import * as THREE from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 /**
  * 人物<机器>控制
@@ -16,17 +16,17 @@ class RoobotControl {
     this.camera = camera;
     this.renderer = renderer;
     // glft模型路径
-    this.gltf = "RobotExpressive.glb";
+    this.gltf = 'RobotExpressive.glb';
     // API对象, 执行人物指令
-    this.api = { state: "Standing" };
+    this.api = { state: 'Standing' };
     // 表情(内容视模型而定)
-    this.emotes = ["Jump", "Yes", "No", "Wave", "Punch", "ThumbsUp"];
+    this.emotes = ['Jump', 'Yes', 'No', 'Wave', 'Punch', 'ThumbsUp'];
     // 状态(内容视模型而定)
-    this.states = ["Idle", "Walking", "Running", "Dance", "Death", "Sitting", "Standing"];
+    this.states = ['Idle', 'Walking', 'Running', 'Dance', 'Death', 'Sitting', 'Standing'];
     // 指定站立时的状态
-    this.standing = "Standing";
+    this.standing = 'Standing';
     // 指定行动时的状态
-    this.walking = "Walking";
+    this.walking = 'Walking';
     // 动画管理
     this.mixer = null;
     // 模型
@@ -49,7 +49,7 @@ class RoobotControl {
     this.firstKeyDown = true;
     this.init();
 
-    console.log("this: ", this);
+    console.log('this: ', this);
   }
 
   init() {
@@ -72,26 +72,26 @@ class RoobotControl {
         const move = new THREE.Vector3();
         this.camera.getWorldDirection(dir);
         dir.y = 0;
-        if (this.keypress["W"]) {
+        if (this.keypress.W) {
           move.z -= 1;
           // this.model.rotation.y = 0;
         }
 
-        if (this.keypress["S"]) {
+        if (this.keypress.S) {
           move.z += 1;
           dir.negate();
           // this.model.rotation.y = -Math.PI;
           // relativeCameraOffset = new THREE.Vector3(0, 10, 10);
         }
 
-        if (this.keypress["A"]) {
+        if (this.keypress.A) {
           move.x -= 1;
           dir.applyMatrix4(new THREE.Matrix4().makeRotationY(Math.PI / 2));
           // this.model.rotation.y = Math.PI / 2;
           // relativeCameraOffset = new THREE.Vector3(10, 10, 0);
         }
 
-        if (this.keypress["D"]) {
+        if (this.keypress.D) {
           move.x += 1;
           dir.applyMatrix4(new THREE.Matrix4().makeRotationY(-Math.PI / 2));
           // this.model.rotation.y = -Math.PI / 2;
@@ -118,15 +118,15 @@ class RoobotControl {
   }
 
   createControlEvents() {
-    document.addEventListener("keydown", this.createKeyDown.bind(this));
-    document.addEventListener("keyup", this.createKeyUp.bind(this));
+    document.addEventListener('keydown', this.createKeyDown.bind(this));
+    document.addEventListener('keyup', this.createKeyUp.bind(this));
   }
 
   createKeyDown(e) {
     this.keypress[e.key.toUpperCase()] = true;
     if (
-      (this.keypress["W"] || this.keypress["A"] || this.keypress["S"] || this.keypress["D"]) &&
-      this.api.state !== this.walking
+      (this.keypress.W || this.keypress.A || this.keypress.S || this.keypress.D)
+      && this.api.state !== this.walking
     ) {
       // 视角回到人物上
       // 相机与人物的offset
@@ -157,7 +157,7 @@ class RoobotControl {
       const name = this.emotes[i];
       this.api[name] = () => {
         this.fadeToAction(name, 0.2);
-        this.mixer.addEventListener("finished", this.restoreState.bind(this));
+        this.mixer.addEventListener('finished', this.restoreState.bind(this));
       };
     }
   }
@@ -180,7 +180,7 @@ class RoobotControl {
   }
 
   restoreState() {
-    this.mixer.removeEventListener("finished", this.restoreState.bind(this));
+    this.mixer.removeEventListener('finished', this.restoreState.bind(this));
     this.fadeToAction(this.api.state, 0.2);
   }
 

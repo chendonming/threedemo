@@ -16,6 +16,7 @@ function textureRepeat(scene, camera, renderer) {
   texture.magFilter = THREE.NearestFilter;
   texture.minFilter = THREE.NearestFilter;
   texture.repeat.set(2, 2)
+  console.log(texture)
 
   const geometry = new THREE.BufferGeometry();
   const vertices = new Float32Array([
@@ -46,11 +47,12 @@ function textureRepeat(scene, camera, renderer) {
       uniform vec2 repeat;
       uniform vec2 tiles;
       uniform vec2 size;
+      uniform vec3 color;
       void main() {
         // gl_FragColor = texture2D(u_texture, vUv);
         // 取模运算
         // gl_FragColor = vec4(texture2D(u_texture, mod(vUv * tiles, vec2(1)) * fontsize.xy + repeat.xy));
-        gl_FragColor = vec4(texture2D(u_texture, mod(vUv * tiles, vec2(1)) * size + repeat));
+        gl_FragColor = vec4(color, 1.0) * vec4(texture2D(u_texture, mod(vUv * tiles, vec2(1)) * size + repeat));
       }
       `,
     uniforms: {
@@ -65,22 +67,13 @@ function textureRepeat(scene, camera, renderer) {
       },
       size: {
         value: new THREE.Vector2(0.25, 0.25)
+      },
+      color: {
+        value: new THREE.Color(0xffff00)
       }
     },
     side: THREE.DoubleSide
   })
-
-  // 估算   起始 0.653448275862  0.36379310344
-
-  const uvs = new Float32Array([
-    0.4, 0,
-    0.7, 0,
-    0.7, 0.8,
-
-    0.4, 0,
-    0.7, 0.8,
-    0.4, 0.8,
-  ])
 
   const tvs = new Float32Array([
     0, 0,
@@ -101,6 +94,7 @@ function textureRepeat(scene, camera, renderer) {
     offsetx: 0.653448275862,
     offsety: 0.36379310344,
     repeat: 4,
+    color: '#ffff00'
   }
   gui.add(obj, 'size', 0.001, 1).onChange(e => {
     shadermaterial.uniforms.size.value = new THREE.Vector2(e, e);
@@ -116,6 +110,10 @@ function textureRepeat(scene, camera, renderer) {
 
   gui.add(obj, 'repeat', 1, 10).onChange(e => {
     shadermaterial.uniforms.tiles.value = new THREE.Vector2(e, e);
+  });
+
+  gui.addColor(obj, 'color').onChange(e => {
+    shadermaterial.uniforms.color.value = new THREE.Color(e);
   });
 }
 export { textureRepeat }

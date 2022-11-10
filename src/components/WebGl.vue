@@ -8,7 +8,7 @@ import * as THREE from "three";
 import oc from "three-orbit-controls";
 import { mapGetters } from "vuex";
 import Stats from "stats.js";
-import { textureRepeat } from "@/testGeo/textureRepeat.js";
+import { testProject } from "@/testGeo/testProject.js";
 
 const OrbitControls = oc(THREE);
 
@@ -16,7 +16,7 @@ export default {
   name: "WebGl",
   methods: {
     testRender() {
-      textureRepeat(this.scene, this.camera, this.renderer);
+      testProject(this.scene, this.camera, this.renderer);
     },
   },
   computed: {
